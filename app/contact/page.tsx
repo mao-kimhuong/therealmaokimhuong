@@ -7,10 +7,14 @@ import TransitionWrapper from "../components/TransitionWrapper";
 
 const TYPES = ["New project", "Freelance contract", "Full-time role", "Open source", "Just say hi"];
 
+
+
 export default function ContactPage(): ReactNode {
   const [form, setForm] = useState({ name: "", email: "", type: "", message: "" });
   const [focused, setFocused] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const field = (name: string) => ({
     width: "100%", background: "none", border: "none",
@@ -20,6 +24,32 @@ export default function ContactPage(): ReactNode {
     fontSize: 14, color: "#1e1608", outline: "none",
     transition: "border-color 0.2s",
   });
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      setSent(true);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <main style={{ background: "#f4edd8", minHeight: "100vh" }}>
@@ -86,7 +116,7 @@ export default function ContactPage(): ReactNode {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ delay: 0.15 }}
-                  onSubmit={(e: FormEvent) => { e.preventDefault(); setSent(true); }}
+                  onSubmit={handleSubmit}
                   style={{ display: "flex", flexDirection: "column", gap: 0 }}
                 >
                   <p style={{
@@ -155,19 +185,31 @@ export default function ContactPage(): ReactNode {
                     />
                   </div>
 
+                  {/* Error message */}
+                  {error && (
+                    <p style={{
+                      fontFamily: "var(--font-body)", fontStyle: "italic",
+                      fontSize: 12, color: "#c0392b", marginBottom: 12,
+                    }}>
+                      ⚠ {error}
+                    </p>
+                  )}
+
                   <motion.button
                     type="submit" data-cursor
-                    whileHover={{ background: "#0d1520" }}
+                    disabled={sending}
+                    whileHover={!sending ? { background: "#0d1520" } : {}}
                     style={{
                       padding: "14px",
-                      background: "#b87333",
+                      background: sending ? "#8a5a28" : "#b87333",
                       fontFamily: "var(--font-label)", fontSize: 9,
                       letterSpacing: "0.18em", textTransform: "uppercase",
-                      color: "#f4edd8", cursor: "none",
+                      color: "#f4edd8", cursor: sending ? "default" : "none",
                       transition: "background 0.2s",
+                      opacity: sending ? 0.8 : 1,
                     }}
                   >
-                    Send Message →
+                    {sending ? "Sending..." : "Send Message →"}
                   </motion.button>
                 </motion.form>
               ) : (
@@ -189,7 +231,7 @@ export default function ContactPage(): ReactNode {
                   <p style={{ fontFamily: "var(--font-display)", fontSize: 32, letterSpacing: "0.04em", color: "#f4edd8", lineHeight: 1 }}>
                     Message Sent
                   </p>
-                  <p style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 13, color: "#3d3020", lineHeight: 1.7 }}>
+                  <p style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 13, color: "#a8966e", lineHeight: 1.7 }}>
                     Thanks for reaching out. I'll get back to you within 24 hours.
                   </p>
                 </motion.div>

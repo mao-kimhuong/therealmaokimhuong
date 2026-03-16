@@ -29,7 +29,7 @@ const TIMELINE = [
     year: "2022-2023",
     role: "Junior Graphic Designer",
     co: "THE FLORA",
-    note: "First 15 paid sites",
+    note: "First 300 Salary",
   },
 ];
 

@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* ── Design System: Midnight Ink — Vintage Nautical ─────────────────── */
 :root {
   /* ── Dark (navy ink) surfaces ── */
@@ -28,17 +30,37 @@
   --copper-dim:   #7a4d22;
   --copper-glow:  rgba(184, 115, 51, 0.15);
 
-  /* ── Aliases so existing components work unchanged ── */
-  --white:   var(--parchment);
-  --off:     var(--parchment-2);
-  --paper:   var(--parchment-3);
-  --red:     var(--copper);
-  --red-dim: var(--copper-dim);
+  /* ── Nautical secondary palette ── */
+  --naval:        #5b8fa8;
+  --naval-glow:   rgba(91, 143, 168, 0.15);
+  --teal:         #4a8f7b;
+  --teal-glow:    rgba(74, 143, 123, 0.15);
 
+  /* ── Font stacks ── */
   --font-display: var(--font-bebas), 'Impact', sans-serif;
   --font-body:    var(--font-lora), Georgia, serif;
   --font-mono:    var(--font-dm-mono), 'Courier New', monospace;
   --font-label:   var(--font-archivo), system-ui, sans-serif;
+
+  /* ── Aliases — keeps all components working ── */
+  --font-heading: var(--font-display);
+  --bg:           var(--ink);
+  --bg-card:      var(--ink-2);
+  --bg-elevated:  var(--ink-3);
+  --accent:       var(--copper);
+  --accent-dim:   var(--copper-glow);
+  --accent-glow:  0 0 48px var(--copper-glow);
+  --gold:         var(--copper-light);
+  --text:         var(--ink-bright);
+  --text-muted:   var(--ink-text);
+  --text-subtle:  var(--ink-body);
+  --border:       var(--ink-rule);
+  --border-light: var(--ink-muted);
+
+  /* ── AnimatedMenu aliases ── */
+  --ivory:   var(--parchment);
+  --surface: var(--ink-3);
+  --subtle:  var(--ink-body);
 
   --ease-expo:  cubic-bezier(0.16, 1, 0.3, 1);
   --ease-sharp: cubic-bezier(0.43, 0.13, 0.23, 0.96);
@@ -48,7 +70,6 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  cursor: none;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   background: var(--ink);
@@ -61,8 +82,8 @@ body {
   font-family: var(--font-body);
 }
 
-a { color: inherit; text-decoration: none; cursor: none; }
-button { cursor: none; border: none; background: none; font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+button { border: none; background: none; font-family: inherit; }
 img { display: block; max-width: 100%; }
 
 ::selection { background: var(--copper); color: var(--parchment); }
@@ -81,56 +102,86 @@ body::after {
   background-size: 200px 200px;
 }
 
-/* ── Label utility ─────────────────────────────────────────────────── */
-.label {
-  font-family: var(--font-label);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* ── Rule line ─────────────────────────────────────────────────────── */
-.rule { border: none; border-top: 1px solid var(--rule); }
-
 /* ── Ornamental divider ─────────────────────────────────────────────── */
 .ornament {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display: flex; align-items: center; gap: 12px;
   color: var(--copper-dim);
-  font-family: var(--font-label);
-  font-size: 8px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-family: var(--font-label); font-size: 8px;
+  letter-spacing: 0.2em; text-transform: uppercase;
 }
-.ornament::before,
-.ornament::after {
-  content: '';
-  flex: 1;
-  height: 1px;
+.ornament::before, .ornament::after {
+  content: ''; flex: 1; height: 1px;
   background: linear-gradient(90deg, transparent, var(--copper-dim), transparent);
 }
 
+/* ── Buttons ────────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.8rem 1.75rem;
+  background: var(--copper); color: var(--parchment);
+  font-family: var(--font-label); font-size: 0.78rem;
+  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 24px rgba(184,115,51,0.32);
+  white-space: nowrap;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px rgba(184,115,51,0.52);
+  background: var(--copper-light);
+}
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.8rem 1.75rem;
+  background: transparent; color: var(--ink-text);
+  font-family: var(--font-label); font-size: 0.78rem;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  border: 1px solid var(--ink-muted); cursor: pointer;
+  text-decoration: none; transition: all 0.25s ease; white-space: nowrap;
+}
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  border-color: var(--copper-dim); color: var(--copper-light);
+}
+
+/* ── Marquee ─────────────────────────────────────────────────────────── */
+.marquee-wrap  { overflow: hidden; white-space: nowrap; }
+.marquee-inner { display: inline-flex; animation: marquee 28s linear infinite; }
+
 /* ── Animations ─────────────────────────────────────────────────────── */
-@keyframes reveal-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes reveal-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-@keyframes line-grow {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
 }
-@keyframes copper-flicker {
-  0%, 92%, 94%, 100% { opacity: 1; }
-  93% { opacity: 0.7; }
+@keyframes fadeOverlay {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mobile nav overlay ─────────────────────────────────────────────── */
+.mobile-menu-overlay {
+  position: fixed; inset: 0;
+  background: rgba(13, 21, 32, 0.97);
+  z-index: 99;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2.25rem;
+  animation: fadeOverlay 0.2s ease;
+  backdrop-filter: blur(12px);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hide-mobile    { display: none !important; }
+  .portfolio-grid { grid-template-columns: 1fr !important; }
+  .project-row    { grid-template-columns: 1fr !important; }
+  .service-grid   { grid-template-columns: 1fr !important; }
+  .contact-grid   { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  .about-grid     { grid-template-columns: 1fr !important; }
 }

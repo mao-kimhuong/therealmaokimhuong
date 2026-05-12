@@ -1,173 +1,261 @@
 "use client";
 
-import { useState, ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ReactNode, useState } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Nav from "../components/Nav";
 import TransitionWrapper from "../components/TransitionWrapper";
+import BackgroundCanvas from "../components/BackgroundCanvas";
+import ClientOnly from "../components/ClientOnly";
 
 const PROJECTS = [
-  { id: "01", name: "Laravel API Platform",   type: "backend",  year: "2024", desc: "Scalable RESTful API — auth, roles, Firebase integration, optimized MySQL queries.", tags: ["PHP","Laravel","MySQL","REST API","Firebase"], url: "#" },
-  { id: "02", name: "Flutter Mobile App",     type: "mobile",   year: "2024", desc: "Cross-platform iOS & Android app with Firebase backend and real-time data sync.",      tags: ["Flutter","Firebase","Dart"],                  url: "#" },
-  { id: "03", name: "Web Admin Dashboard",    type: "fullstack",year: "2023", desc: "Full-featured admin panel — React frontend, Laravel backend, MySQL database.",          tags: ["React.js","Laravel","MySQL","JavaScript"],     url: "#" },
-  { id: "04", name: "E-Commerce Platform",    type: "fullstack",year: "2023", desc: "Complete e-commerce system — catalog, cart, payment integration, order management.",    tags: ["PHP","Laravel","JavaScript","MySQL"],          url: "#" },
-  { id: "05", name: "Company Management App", type: "backend",  year: "2023", desc: "Internal ERP-style system with role-based access, reporting, and SQL Server backend.",   tags: ["PHP","SQL Server",".NET","REST API"],          url: "#" },
-  { id: "06", name: "UI/UX Design System",    type: "design",   year: "2022", desc: "End-to-end design system — wireframes, components, and prototypes built in Figma.",    tags: ["Figma","Adobe XD","UI/UX"],                   url: "#" },
-  { id: "07", name: "Spring Boot Service",    type: "backend",  year: "2022", desc: "Java microservice with Spring Boot — REST endpoints, MySQL, deployed on Linux server.", tags: ["Java","Spring Boot","MySQL","REST API"],       url: "#" },
-  { id: "08", name: "CI/CD Deployment Setup", type: "tooling",  year: "2022", desc: "Automated deployment pipeline with GitHub Actions, server config, and web hosting.",    tags: ["Git","GitHub Actions","CI/CD","Linux"],        url: "#" },
+  {
+    id: "01",
+    title: "POS & Inventory System",
+    category: "Web Application",
+    year: "2023",
+    description:
+      "Multi-warehouse point-of-sale system with role-based access (admin, cashier, manager), real-time stock tracking, invoice generation, and full inventory control built for production business use.",
+    tech: ["Laravel", "MySQL", "jQuery", "PHP", "JavaScript"],
+    image: "/images/pos.jpg",
+  },
+  {
+    id: "02",
+    title: "Restaurant Menu System",
+    category: "Web Application",
+    year: "2024",
+    description:
+      "Digital menu management platform for F&B businesses with dynamic item management, category controls, pricing updates, and QR-based customer-facing access.",
+    tech: ["Laravel", "Vue.js", "MySQL", "JavaScript"],
+    image: "/images/menu.png",
+  },
+  {
+    id: "03",
+    title: "Analytics Dashboard",
+    category: "Data Visualization",
+    year: "2024",
+    description:
+      "Real-time business analytics dashboard with interactive charts, user management, role permissions, and CSV/PDF export — built to monitor key business metrics live.",
+    tech: ["React", "Laravel", "Chart.js", "MySQL"],
+    image: "/images/dashboard.png",
+  },
+  {
+    id: "04",
+    title: "Real-Time Chat System",
+    category: "Communication Platform",
+    year: "2024",
+    description:
+      "Team messaging platform with WebSocket/Firebase real-time updates, message history, notifications, and a responsive mobile-first UI built on a REST API foundation.",
+    tech: ["Laravel", "Firebase", "JavaScript", "MySQL"],
+    image: null,
+  },
 ];
 
-const FILTERS = ["All", "Fullstack", "Backend", "Mobile", "Design", "Tooling"];
-
 export default function PortfolioPage(): ReactNode {
-  const [active, setActive] = useState("All");
-  const filtered = active === "All"
-    ? PROJECTS
-    : PROJECTS.filter((p) => p.type === active.toLowerCase());
+  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <main style={{ background: "#f4edd8", minHeight: "100vh" }}>
+    <main style={{ background: "var(--ink)", minHeight: "100vh", color: "var(--ink-text)" }}>
+      <ClientOnly>
+        <BackgroundCanvas />
+      </ClientOnly>
       <Nav />
+
       <TransitionWrapper>
-        <div style={{ padding: "14vh 6vw 12vh" }}>
+        <div style={{ padding: "12vh 0", position: "relative", zIndex: 1 }}>
 
-          {/* Header */}
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-            <p style={{
-              fontFamily: "var(--font-label)", fontSize: 9,
-              letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "#a8966e", marginBottom: 12,
-            }}>
-              Selected work
-            </p>
-            <h1 style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(64px, 12vw, 160px)",
-              lineHeight: 0.88, letterSpacing: "0.02em",
-              color: "#1e1608", marginBottom: "6vh",
-            }}>
-              All Projects
-            </h1>
-          </motion.div>
+          {/* ── Header ── */}
+          <div style={{
+            padding: "0 clamp(20px,6vw,80px) 8vh",
+            borderBottom: "1px solid var(--ink-rule)",
+          }}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              style={{
+                fontFamily: "var(--font-label)",
+                fontSize: 9, letterSpacing: "0.18em",
+                textTransform: "uppercase", color: "var(--ink-subtle)", marginBottom: 16,
+              }}
+            >
+              Selected Work — {PROJECTS.length} Projects
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(56px, 14vw, 160px)",
+                lineHeight: 0.9, color: "var(--parchment)", letterSpacing: "0.02em",
+              }}
+            >
+              Work<span style={{ color: "var(--copper)" }}>.</span>
+            </motion.h1>
+          </div>
 
-          {/* Filter row */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.15 }}
-            style={{
-              display: "flex", gap: 0,
-              borderTop: "1px solid #cfc4a0",
-              borderBottom: "1px solid #cfc4a0",
-              marginBottom: "6vh",
-            }}
-          >
-            {FILTERS.map((f, i) => (
-              <button
-                key={f}
-                data-cursor
-                onClick={() => setActive(f)}
+          {/* ── Project list ── */}
+          <div>
+            {PROJECTS.map((project, i) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08 }}
+                onMouseEnter={() => setHovered(project.id)}
+                onMouseLeave={() => setHovered(null)}
                 style={{
-                  fontFamily: "var(--font-label)", fontSize: 9,
-                  letterSpacing: "0.18em", textTransform: "uppercase",
-                  padding: "14px 20px",
-                  borderRight: i < FILTERS.length - 1 ? "1px solid #cfc4a0" : "none",
-                  background: active === f ? "#100e04" : "transparent",
-                  color: active === f ? "#f4edd8" : "#a8966e",
-                  cursor: "none", transition: "all 0.18s",
+                  borderBottom: "1px solid var(--ink-rule)",
+                  padding: "0 clamp(20px,6vw,80px)",
+                  transition: "background 0.3s ease",
+                  background: hovered === project.id
+                    ? "rgba(30,48,80,0.35)"
+                    : "transparent",
                 }}
               >
-                {f}
-              </button>
-            ))}
-            <span style={{
-              marginLeft: "auto",
-              fontFamily: "var(--font-mono)", fontSize: 9,
-              color: "#a8966e", alignSelf: "center",
-              padding: "0 16px",
-            }}>
-              {filtered.length} projects
-            </span>
-          </motion.div>
+                <div
+                  className="project-row"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "60px 1fr 320px",
+                    gap: "4vw",
+                    alignItems: "center",
+                    padding: "5vh 0",
+                  }}
+                >
+                  {/* Number */}
+                  <span style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 10, color: "var(--copper)", letterSpacing: "0.15em",
+                  }}>
+                    {project.id}
+                  </span>
 
-          {/* Header row */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "48px 1fr 180px 60px",
-            gap: "2vw", paddingBottom: 10,
-            borderBottom: "1px solid #cfc4a0",
-            marginBottom: 0,
-          }}>
-            {["No.", "Project", "Stack", "Year"].map((h) => (
-              <span key={h} style={{
-                fontFamily: "var(--font-label)", fontSize: 8,
-                letterSpacing: "0.18em", textTransform: "uppercase", color: "#a8966e",
-              }}>
-                {h}
-              </span>
+                  {/* Info */}
+                  <div>
+                    <div style={{
+                      display: "flex", alignItems: "center", gap: 16, marginBottom: 10,
+                    }}>
+                      <span style={{
+                        fontFamily: "var(--font-label)",
+                        fontSize: 9, letterSpacing: "0.18em",
+                        textTransform: "uppercase", color: "var(--ink-subtle)",
+                      }}>
+                        {project.category}
+                      </span>
+                      <span style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: 9, color: "var(--copper-dim)", letterSpacing: "0.08em",
+                      }}>
+                        {project.year}
+                      </span>
+                    </div>
+                    <h2 style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "clamp(28px, 4vw, 52px)",
+                      lineHeight: 0.95, color: "var(--parchment)",
+                      marginBottom: 14, letterSpacing: "0.01em",
+                    }}>
+                      {project.title}
+                    </h2>
+                    <p style={{
+                      fontFamily: "var(--font-body)",
+                      fontStyle: "italic",
+                      fontSize: "clamp(13px,1.1vw,15px)",
+                      color: "var(--ink-body)", lineHeight: 1.7,
+                      maxWidth: 500, marginBottom: 16,
+                    }}>
+                      {project.description}
+                    </p>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                      {project.tech.map((t) => (
+                        <span key={t} style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: 9, letterSpacing: "0.08em",
+                          color: "var(--ink-text)",
+                          padding: "3px 10px",
+                          border: "1px solid var(--ink-rule)",
+                          background: "var(--ink-2)",
+                        }}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Image */}
+                  <motion.div
+                    animate={{ opacity: hovered === project.id ? 1 : 0.7 }}
+                    style={{
+                      aspectRatio: "16/10",
+                      overflow: "hidden",
+                      border: "1px solid var(--ink-rule)",
+                    }}
+                  >
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        style={{
+                          width: "100%", height: "100%",
+                          objectFit: "cover",
+                          filter: "brightness(0.8) contrast(1.05) saturate(0.9)",
+                          transition: "transform 0.5s ease",
+                          transform: hovered === project.id ? "scale(1.04)" : "scale(1)",
+                        }}
+                      />
+                    ) : (
+                      <div style={{
+                        width: "100%", height: "100%",
+                        background: "var(--ink-3)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                      }}>
+                        <span style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: 9, color: "var(--ink-subtle)",
+                          letterSpacing: "0.15em",
+                        }}>
+                          NO PREVIEW
+                        </span>
+                      </div>
+                    )}
+                  </motion.div>
+                </div>
+              </motion.div>
             ))}
           </div>
 
-          {/* Rows */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              {filtered.map((p, i) => (
-                <motion.div
-                  key={p.id}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.04 }}
-                  style={{ borderBottom: "1px solid #cfc4a0" }}
-                >
-                  <Link href={p.url} data-cursor>
-                    <motion.div
-                      whileHover={{ background: "#ede4cc" }}
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "48px 1fr 180px 60px",
-                        gap: "2vw",
-                        padding: "22px 0",
-                        alignItems: "center",
-                        cursor: "none",
-                        transition: "background 0.15s",
-                      }}
-                    >
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, color: "#a8966e" }}>{p.id}</span>
-                      <div>
-                        <p style={{
-                          fontFamily: "var(--font-display)",
-                          fontSize: "clamp(18px, 1.8vw, 24px)",
-                          letterSpacing: "0.04em", color: "#1e1608",
-                          marginBottom: 4, lineHeight: 1,
-                        }}>
-                          {p.name}
-                        </p>
-                        <p style={{ fontFamily: "var(--font-body)", fontSize: 12, color: "#6b5c3e", lineHeight: 1.6 }}>
-                          {p.desc}
-                        </p>
-                      </div>
-                      <div style={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
-                        {p.tags.slice(0, 2).map((t) => (
-                          <span key={t} style={{
-                            fontFamily: "var(--font-mono)", fontSize: 8,
-                            color: "#a8966e", padding: "2px 6px",
-                            border: "1px solid #cfc4a0", background: "#ede4cc",
-                          }}>{t}</span>
-                        ))}
-                      </div>
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, color: "#a8966e" }}>{p.year}</span>
-                    </motion.div>
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+          {/* ── CTA ── */}
+          <div style={{
+            padding: "8vh clamp(20px,6vw,80px)",
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+            flexWrap: "wrap", gap: 24,
+          }}>
+            <p style={{
+              fontFamily: "var(--font-body)",
+              fontStyle: "italic",
+              fontSize: "clamp(15px,1.4vw,18px)",
+              color: "var(--ink-body)", maxWidth: 420, lineHeight: 1.7,
+            }}>
+              Have a project in mind? I build fast, clean, and scalable.
+            </p>
+            <Link href="/contact" data-cursor>
+              <motion.span
+                whileHover={{ background: "var(--parchment)", color: "var(--ink)" }}
+                style={{
+                  padding: "14px 36px",
+                  background: "var(--copper)", color: "var(--parchment)",
+                  fontFamily: "var(--font-label)",
+                  letterSpacing: "0.15em", fontSize: 9,
+                  textTransform: "uppercase", cursor: "pointer",
+                  display: "inline-block", transition: "all 0.2s",
+                }}
+              >
+                Start a project →
+              </motion.span>
+            </Link>
+          </div>
+
         </div>
       </TransitionWrapper>
     </main>

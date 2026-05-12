@@ -18,7 +18,7 @@ const Nav: FC = () => {
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", fn);
+    window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
@@ -29,9 +29,9 @@ const Nav: FC = () => {
       transition={{ delay: 0.2, duration: 0.6 }}
       style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        borderBottom: `1px solid ${scrolled ? "#cfc4a0" : "transparent"}`,
+        borderBottom: `1px solid ${scrolled ? "var(--ink-rule)" : "transparent"}`,
         background: scrolled ? "rgba(13,21,32,0.95)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
+        backdropFilter: scrolled ? "blur(14px)" : "none",
         transition: "all 0.3s ease",
         padding: "0 6vw",
         display: "grid",
@@ -43,12 +43,13 @@ const Nav: FC = () => {
       {/* Logo */}
       <Link href="/" data-cursor>
         <span style={{
-          fontFamily: "var(--font-display, sans-serif)",
-          fontSize: 22, letterSpacing: "0.06em",
-          color: "#100e04",
+          fontFamily: "var(--font-display)",
+          fontSize: 22,
+          letterSpacing: "0.06em",
+          color: "var(--parchment)",
           lineHeight: 1,
         }}>
-          DEV<span style={{ color: "#b87333" }}>.</span>
+          DEV<span style={{ color: "var(--copper)" }}>.</span>
         </span>
       </Link>
 
@@ -59,16 +60,16 @@ const Nav: FC = () => {
           return (
             <Link key={link.href} href={link.href} data-cursor>
               <motion.span
-                whileHover={{ color: "#b87333" }}
+                whileHover={{ color: "var(--copper-light)" }}
                 style={{
                   display: "flex", alignItems: "center", gap: 6,
-                  fontFamily: "var(--font-label, sans-serif)",
+                  fontFamily: "var(--font-label)",
                   fontSize: 9, letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: active ? "#f4edd8" : "#3a5880",
+                  color: active ? "var(--parchment)" : "var(--ink-body)",
                   padding: "0 16px",
-                  borderLeft: i === 0 ? "1px solid #cfc4a0" : "none",
-                  borderRight: "1px solid #cfc4a0",
+                  borderLeft: i === 0 ? "1px solid var(--ink-rule)" : "none",
+                  borderRight: "1px solid var(--ink-rule)",
                   height: 52,
                   transition: "color 0.2s",
                 }}
@@ -76,7 +77,8 @@ const Nav: FC = () => {
                 {active && (
                   <span style={{
                     width: 4, height: 4,
-                    background: "#b87333",
+                    background: "var(--copper)",
+                    borderRadius: "50%",
                     flexShrink: 0,
                   }} />
                 )}

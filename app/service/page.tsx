@@ -1,207 +1,258 @@
 "use client";
 
-import { useState, ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ReactNode, useState } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Nav from "../components/Nav";
 import TransitionWrapper from "../components/TransitionWrapper";
+import BackgroundCanvas from "../components/BackgroundCanvas";
+import ClientOnly from "../components/ClientOnly";
 
 const SERVICES = [
   {
-    id: "01", title: "Fullstack Web App",
-    price: "From $8xx-up",
-    desc: "End-to-end web application — PHP/Laravel backend, MySQL database, React or HTML/JS frontend. From requirements to live deployment.",
-    stack: ["PHP", "Laravel", "MySQL", "REST API", "Firebase"],
-    deliverables: ["Full source code", "API documentation", "Database schema", "1 month support"],
+    id: "01",
+    title: "Web Application Development",
+    short: "Full-stack",
+    description:
+      "End-to-end web applications built with PHP/Laravel on the backend and React or Vue.js on the frontend. From architecture and database design to deployment and maintenance.",
+    tags: ["Laravel", "PHP", "React", "Vue.js", "MySQL"],
   },
   {
-    id: "02", title: "API & Backend",
-    price: "From $4xx-up",
-    desc: "RESTful APIs and backend systems built with PHP & Laravel. Auth, role management, Firebase integration, MySQL/SQL Server.",
-    stack: ["PHP", "Laravel", "MySQL", "SQL Server", "Firebase"],
-    deliverables: ["API docs", "Postman collection", "Auth system", "DB schema"],
+    id: "02",
+    title: "API Development & Integration",
+    short: "Backend",
+    description:
+      "Scalable RESTful APIs with proper authentication (Sanctum/JWT), documentation, rate limiting, and optimization for high-traffic systems. Third-party API integrations included.",
+    tags: ["REST API", "Laravel Sanctum", "JWT", "Postman"],
   },
   {
-    id: "03", title: "Frontend & UI",
-    price: "From $3xx-up",
-    desc: "Responsive interfaces with React, HTML5, CSS3 and JavaScript. UI/UX design in Figma from wireframe to pixel-perfect implementation.",
-    stack: ["React.js", "HTML5", "CSS3", "JavaScript", "Figma"],
-    deliverables: ["Responsive design", "Figma mockups", "Cross-browser tested", "Performance audit"],
+    id: "03",
+    title: "Mobile App Development",
+    short: "Flutter",
+    description:
+      "Cross-platform mobile applications using Flutter, targeting iOS and Android from a single codebase. Native-feeling performance with full backend integration.",
+    tags: ["Flutter", "Dart", "Firebase", "REST API"],
   },
   {
-    id: "04", title: "Mobile App",
-    price: "From $5xx-up",
-    desc: "Cross-platform mobile applications with Flutter and Firebase backend. iOS and Android from a single codebase.",
-    stack: ["Flutter", "Firebase", "REST API", "MySQL"],
-    deliverables: ["Flutter source code", "Firebase setup", "iOS & Android build", "App store guidance"],
+    id: "04",
+    title: "Database Architecture",
+    short: "Data",
+    description:
+      "MySQL and PostgreSQL schema design, query optimization, indexing strategy, and performance tuning for complex business data at scale. Data migration services included.",
+    tags: ["MySQL", "PostgreSQL", "SQL Server", "Firebase"],
+  },
+  {
+    id: "05",
+    title: "POS & Business Systems",
+    short: "Enterprise",
+    description:
+      "Custom point-of-sale, inventory management, and ERP systems tailored to business workflows. Multi-warehouse, multi-branch support with role-based access control.",
+    tags: ["Laravel", "MySQL", "JavaScript", "jQuery"],
+  },
+  {
+    id: "06",
+    title: "UI/UX Design",
+    short: "Design",
+    description:
+      "From wireframes to pixel-perfect interfaces. User flow analysis, Figma prototyping, design systems, and handoff-ready components that developers can actually build.",
+    tags: ["Figma", "Adobe XD", "Prototyping", "Design Systems"],
   },
 ];
 
 export default function ServicePage(): ReactNode {
-  const [openId, setOpenId] = useState<string | null>("01");
+  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <main style={{ background: "#f4edd8", minHeight: "100vh" }}>
+    <main style={{ background: "var(--ink)", minHeight: "100vh", color: "var(--ink-text)" }}>
+      <ClientOnly>
+        <BackgroundCanvas />
+      </ClientOnly>
       <Nav />
+
       <TransitionWrapper>
-        <div style={{ padding: "14vh 6vw 12vh" }}>
+        <div style={{ padding: "12vh 0", position: "relative", zIndex: 1 }}>
 
-          {/* Header */}
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} style={{ marginBottom: "8vh" }}>
-            <p style={{ fontFamily: "var(--font-label)", fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: "#a8966e", marginBottom: 12 }}>
-              Services
-            </p>
-            <h1 style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(64px, 12vw, 160px)",
-              lineHeight: 0.88, letterSpacing: "0.02em",
-              color: "#1e1608",
-            }}>
-              What I Build
-            </h1>
-          </motion.div>
-
-          {/* Accordion */}
-          <div style={{ marginBottom: "10vh" }}>
-            {SERVICES.map((s, i) => {
-              const isOpen = openId === s.id;
-              return (
-                <motion.div
-                  key={s.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: i * 0.07 }}
-                  style={{ borderTop: "1px solid #cfc4a0" }}
-                >
-                  <button
-                    data-cursor
-                    onClick={() => setOpenId(isOpen ? null : s.id)}
-                    style={{
-                      width: "100%",
-                      background: isOpen ? "#100e04" : "transparent",
-                      padding: "24px 0",
-                      cursor: "none",
-                      display: "grid",
-                      gridTemplateColumns: "48px 1fr 140px 32px",
-                      gap: "2vw", alignItems: "center", textAlign: "left",
-                      transition: "background 0.2s",
-                    }}
-                  >
-                    <span style={{
-                      fontFamily: "var(--font-mono)", fontSize: 10,
-                      color: isOpen ? "#3d3020" : "#a8966e",
-                    }}>
-                      {s.id}
-                    </span>
-                    <span style={{
-                      fontFamily: "var(--font-display)", fontSize: "clamp(20px, 2.8vw, 38px)",
-                      letterSpacing: "0.04em", lineHeight: 1,
-                      color: isOpen ? "#f4edd8" : "#100e04",
-                      transition: "color 0.2s",
-                    }}>
-                      {s.title}
-                    </span>
-                    <span style={{
-                      fontFamily: "var(--font-mono)", fontSize: 11,
-                      color: isOpen ? "#b87333" : "#a8966e",
-                      transition: "color 0.2s",
-                    }}>
-                      {s.price}
-                    </span>
-                    <motion.div
-                      animate={{ rotate: isOpen ? 45 : 0 }}
-                      style={{ width: 14, height: 14, position: "relative" }}
-                    >
-                      <span style={{ position: "absolute", top: "50%", left: 0, width: "100%", height: 1, background: isOpen ? "#b87333" : "#a8966e", transform: "translateY(-50%)" }} />
-                      <span style={{ position: "absolute", left: "50%", top: 0, height: "100%", width: 1, background: isOpen ? "#b87333" : "#a8966e", transform: "translateX(-50%)" }} />
-                    </motion.div>
-                  </button>
-
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-                        style={{ overflow: "hidden", background: "#0d1520" }}
-                      >
-                        <div style={{
-                          padding: "0 0 32px",
-                          paddingLeft: "calc(48px + 2vw)",
-                          display: "grid", gridTemplateColumns: "1fr 1fr",
-                          gap: "4vw",
-                        }}>
-                          <div>
-                            <p style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 13, color: "#6b5c3e", lineHeight: 1.85, marginBottom: 20 }}>
-                              {s.desc}
-                            </p>
-                            <p style={{ fontFamily: "var(--font-label)", fontSize: 8, letterSpacing: "0.15em", textTransform: "uppercase", color: "#3d3020", marginBottom: 10 }}>Stack</p>
-                            <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
-                              {s.stack.map((t) => (
-                                <span key={t} style={{
-                                  fontFamily: "var(--font-mono)", fontSize: 9,
-                                  color: "#3d3020", padding: "3px 8px",
-                                  border: "1px solid #1e1608",
-                                }}>
-                                  {t}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                          <div>
-                            <p style={{ fontFamily: "var(--font-label)", fontSize: 8, letterSpacing: "0.15em", textTransform: "uppercase", color: "#3d3020", marginBottom: 14 }}>Deliverables</p>
-                            {s.deliverables.map((d) => (
-                              <div key={d} style={{
-                                display: "flex", alignItems: "center", gap: 10,
-                                borderBottom: "1px solid #1e1608", padding: "9px 0",
-                              }}>
-                                <div style={{ width: 4, height: 4, background: "#b87333", flexShrink: 0 }} />
-                                <span style={{ fontFamily: "var(--font-body)", fontSize: 12, color: "#6b5c3e" }}>{d}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
-            <div style={{ borderTop: "1px solid #cfc4a0" }} />
+          {/* ── Header ── */}
+          <div style={{
+            padding: "0 clamp(20px,6vw,80px) 8vh",
+            borderBottom: "1px solid var(--ink-rule)",
+          }}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              style={{
+                fontFamily: "var(--font-label)",
+                fontSize: 9, letterSpacing: "0.18em",
+                textTransform: "uppercase", color: "var(--ink-subtle)", marginBottom: 16,
+              }}
+            >
+              What I Do — {SERVICES.length} Services
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(56px,14vw,160px)",
+                lineHeight: 0.9, color: "var(--parchment)", letterSpacing: "0.02em",
+              }}
+            >
+              Services<span style={{ color: "var(--copper)" }}>.</span>
+            </motion.h1>
           </div>
 
-          {/* CTA */}
-          <div style={{
-            display: "grid", gridTemplateColumns: "1fr auto",
-            alignItems: "center", gap: "4vw",
-            padding: "40px", background: "#b87333",
-          }}>
-            <p style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(28px, 4vw, 52px)",
-              letterSpacing: "0.02em", lineHeight: 1,
-              color: "#f4edd8",
-            }}>
-              Not sure what you need? Let's figure it out.
-            </p>
-            <Link href="/contact" data-cursor>
-              <motion.span
-                whileHover={{ background: "#f4edd8", color: "#b87333" }}
+          {/* ── Services list ── */}
+          <div>
+            {SERVICES.map((svc, i) => (
+              <motion.div
+                key={svc.id}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.07 }}
+                onMouseEnter={() => setHovered(svc.id)}
+                onMouseLeave={() => setHovered(null)}
                 style={{
-                  display: "inline-flex", alignItems: "center",
-                  padding: "12px 28px",
-                  border: "1px solid rgba(245,242,237,0.4)",
-                  fontFamily: "var(--font-label)", fontSize: 9,
-                  letterSpacing: "0.18em", textTransform: "uppercase",
-                  color: "#f4edd8", whiteSpace: "nowrap",
-                  transition: "all 0.2s",
+                  borderBottom: "1px solid var(--ink-rule)",
+                  padding: "0 clamp(20px,6vw,80px)",
+                  background: hovered === svc.id
+                    ? "rgba(30,48,80,0.35)"
+                    : "transparent",
+                  transition: "background 0.3s ease",
                 }}
               >
-                Start a project
-              </motion.span>
-            </Link>
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: "60px 120px 1fr",
+                  gap: "3vw",
+                  alignItems: "start",
+                  padding: "5vh 0",
+                }}>
+                  {/* Number */}
+                  <span style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 10, color: "var(--copper)",
+                    letterSpacing: "0.15em", paddingTop: 4,
+                  }}>
+                    {svc.id}
+                  </span>
+
+                  {/* Short label */}
+                  <div style={{ paddingTop: 4 }}>
+                    <span style={{
+                      fontFamily: "var(--font-label)",
+                      fontSize: 9, letterSpacing: "0.18em",
+                      textTransform: "uppercase", color: "var(--ink-subtle)",
+                    }}>
+                      {svc.short}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div>
+                    <h2 style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "clamp(24px,3.5vw,48px)",
+                      lineHeight: 0.95, color: "var(--parchment)",
+                      marginBottom: 16, letterSpacing: "0.01em",
+                    }}>
+                      {svc.title}
+                    </h2>
+                    <p style={{
+                      fontFamily: "var(--font-body)",
+                      fontStyle: "italic",
+                      fontSize: "clamp(13px,1.1vw,15px)",
+                      color: "var(--ink-body)", lineHeight: 1.75,
+                      maxWidth: 560, marginBottom: 18,
+                    }}>
+                      {svc.description}
+                    </p>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                      {svc.tags.map((t) => (
+                        <span key={t} style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: 9, letterSpacing: "0.08em",
+                          color: "var(--ink-text)",
+                          padding: "3px 10px",
+                          border: "1px solid var(--ink-rule)",
+                          background: "var(--ink-2)",
+                        }}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
+
+          {/* ── Process note ── */}
+          <div style={{
+            padding: "6vh clamp(20px,6vw,80px)",
+            borderTop: "1px solid var(--ink-rule)",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "6vw",
+          }}>
+            <div>
+              <p style={{
+                fontFamily: "var(--font-label)",
+                fontSize: 9, letterSpacing: "0.18em",
+                textTransform: "uppercase", color: "var(--ink-subtle)", marginBottom: 16,
+              }}>
+                How I Work
+              </p>
+              {["Discovery & scoping", "Architecture & planning", "Build & iterate", "Deploy & support"].map((step, i) => (
+                <div key={step} style={{
+                  display: "flex", alignItems: "center", gap: 16,
+                  padding: "10px 0",
+                  borderBottom: "1px solid var(--ink-rule)",
+                }}>
+                  <span style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 9, color: "var(--copper)", minWidth: 20,
+                  }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: 14, color: "var(--ink-text)",
+                  }}>
+                    {step}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
+              <p style={{
+                fontFamily: "var(--font-body)",
+                fontStyle: "italic",
+                fontSize: "clamp(15px,1.4vw,19px)",
+                color: "var(--ink-body)", lineHeight: 1.7, marginBottom: 28,
+              }}>
+                Every project is unique. Let's talk through what you're building
+                and find the right approach together.
+              </p>
+              <Link href="/contact" data-cursor>
+                <motion.span
+                  whileHover={{ background: "var(--parchment)", color: "var(--ink)" }}
+                  style={{
+                    padding: "14px 36px",
+                    background: "var(--copper)", color: "var(--parchment)",
+                    fontFamily: "var(--font-label)",
+                    letterSpacing: "0.15em", fontSize: 9,
+                    textTransform: "uppercase", cursor: "pointer",
+                    display: "inline-block", transition: "all 0.2s",
+                  }}
+                >
+                  Get in touch →
+                </motion.span>
+              </Link>
+            </div>
+          </div>
+
         </div>
       </TransitionWrapper>
     </main>

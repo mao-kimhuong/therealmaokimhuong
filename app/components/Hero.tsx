@@ -4,7 +4,10 @@ import { FC, useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 
-const STACK = ["PHP", "Laravel", "MySQL", "JavaScript", "React.js", "Flutter", "Java", "Git", "Figma", "REST APIs", "Firebase", "SQL Server"];
+const STACK = [
+  "PHP", "Laravel", "MySQL", "JavaScript", "React.js",
+  "Flutter", "Java", "Git", "Figma", "REST APIs", "Firebase", "SQL Server",
+];
 
 const Hero: FC = () => {
   const ref = useRef<HTMLElement>(null);
@@ -13,7 +16,7 @@ const Hero: FC = () => {
 
   const [year] = useState(new Date().getFullYear());
   const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => setMounted(true), []);
 
   return (
     <section
@@ -25,7 +28,7 @@ const Hero: FC = () => {
         gridTemplateRows: "1fr auto",
         position: "relative",
         overflow: "hidden",
-        borderBottom: "1px solid #cfc4a0",
+        borderBottom: "1px solid var(--ink-rule)",
       }}
     >
       {/* Top meta row */}
@@ -40,15 +43,15 @@ const Hero: FC = () => {
           }}
         >
           <span style={{
-            fontFamily: "var(--font-label, sans-serif)",
+            fontFamily: "var(--font-label)",
             fontSize: 9, letterSpacing: "0.18em",
-            textTransform: "uppercase", color: "#3a5880",
+            textTransform: "uppercase", color: "var(--ink-subtle)",
           }}>
             PHP · Laravel · React · Flutter Developer
           </span>
           <span style={{
-            fontFamily: "var(--font-mono, monospace)",
-            fontSize: 9, color: "#3a5880", letterSpacing: "0.12em",
+            fontFamily: "var(--font-mono)",
+            fontSize: 9, color: "var(--ink-subtle)", letterSpacing: "0.12em",
           }}>
             {year} — Continue Journeys
           </span>
@@ -66,39 +69,27 @@ const Hero: FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span style={{
-              fontFamily: "var(--font-display, sans-serif)",
-              fontSize: "clamp(80px, 15vw, 220px)",
-              lineHeight: 0.88,
-              letterSpacing: "0.01em",
-              color: "#100e04",
-              display: "block",
-            }}>
-              Building
-            </span>
-            <span style={{
-              fontFamily: "var(--font-display, sans-serif)",
-              fontSize: "clamp(80px, 15vw, 220px)",
-              lineHeight: 0.88,
-              letterSpacing: "0.01em",
-              color: "#100e04",
-              display: "flex",
-              alignItems: "baseline",
-              gap: "0.12em",
-            }}>
-              The
-              <span style={{ color: "#b87333" }}>.</span>
-            </span>
-            <span style={{
-              fontFamily: "var(--font-display, sans-serif)",
-              fontSize: "clamp(80px, 15vw, 220px)",
-              lineHeight: 0.88,
-              letterSpacing: "0.01em",
-              color: "#100e04",
-              display: "block",
-            }}>
-              Web
-            </span>
+            {["Building", "The", "Web"].map((word, i) => (
+              <span
+                key={word}
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(80px, 15vw, 220px)",
+                  lineHeight: 0.88,
+                  letterSpacing: "0.01em",
+                  /* ← fixed: parchment on dark ink background */
+                  color: "var(--parchment)",
+                  display: word === "The" ? "flex" : "block",
+                  alignItems: word === "The" ? "baseline" : undefined,
+                  gap: word === "The" ? "0.12em" : undefined,
+                }}
+              >
+                {word}
+                {word === "The" && (
+                  <span style={{ color: "var(--copper)" }}>.</span>
+                )}
+              </span>
+            ))}
           </motion.h1>
         </div>
 
@@ -113,24 +104,27 @@ const Hero: FC = () => {
             gap: "6vw",
             marginTop: "6vh",
             paddingTop: "4vh",
-            borderTop: "1px solid #cfc4a0",
+            borderTop: "1px solid var(--ink-rule)",
           }}
         >
           <p style={{
-            fontFamily: "var(--font-body, serif)",
+            fontFamily: "var(--font-body)",
             fontStyle: "italic",
             fontSize: "clamp(15px, 1.5vw, 19px)",
-            color: "#6a88a8",
+            color: "var(--ink-body)",
             lineHeight: 1.75,
             maxWidth: 400,
           }}>
-            PHP & Laravel specialist with 4+ years building robust backends, RESTful APIs, and polished interfaces — from database design to Flutter mobile apps.
+            PHP & Laravel specialist with 4+ years building robust backends,
+            RESTful APIs, and polished interfaces — from database design to
+            Flutter mobile apps.
           </p>
+
           <div>
             <p style={{
-              fontFamily: "var(--font-label, sans-serif)",
+              fontFamily: "var(--font-label)",
               fontSize: 9, letterSpacing: "0.18em",
-              textTransform: "uppercase", color: "#3a5880",
+              textTransform: "uppercase", color: "var(--ink-subtle)",
               marginBottom: 12,
             }}>
               Stack
@@ -143,12 +137,12 @@ const Hero: FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + i * 0.05 }}
                   style={{
-                    fontFamily: "var(--font-mono, monospace)",
+                    fontFamily: "var(--font-mono)",
                     fontSize: 10, letterSpacing: "0.06em",
-                    color: "#6a88a8",
+                    color: "var(--ink-text)",
                     padding: "3px 10px",
-                    border: "1px solid #cfc4a0",
-                    background: "#111d2e",
+                    border: "1px solid var(--ink-rule)",
+                    background: "var(--ink-2)",
                   }}
                 >
                   {s}
@@ -166,20 +160,20 @@ const Hero: FC = () => {
         transition={{ delay: 0.8, duration: 0.6 }}
         style={{
           display: "flex", justifyContent: "space-between", alignItems: "center",
-          paddingTop: "4vh", borderTop: "1px solid #cfc4a0",
+          paddingTop: "4vh", borderTop: "1px solid var(--ink-rule)",
         }}
       >
         <div style={{ display: "flex", gap: 12 }}>
           <Link href="/portfolio" data-cursor>
             <motion.span
-              whileHover={{ background: "#100e04", color: "#f4edd8" }}
+              whileHover={{ background: "var(--parchment)", color: "var(--ink)" }}
               style={{
                 display: "inline-flex", alignItems: "center", gap: 10,
                 padding: "10px 24px",
-                background: "#b87333",
-                fontFamily: "var(--font-label, sans-serif)",
+                background: "var(--copper)",
+                fontFamily: "var(--font-label)",
                 fontSize: 9, letterSpacing: "0.18em",
-                textTransform: "uppercase", color: "#f4edd8",
+                textTransform: "uppercase", color: "var(--parchment)",
                 transition: "all 0.2s",
               }}
             >
@@ -188,14 +182,14 @@ const Hero: FC = () => {
           </Link>
           <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" data-cursor>
             <motion.span
-              whileHover={{ borderColor: "#100e04", color: "#100e04" }}
+              whileHover={{ borderColor: "var(--copper)", color: "var(--copper-light)" }}
               style={{
                 display: "inline-flex", alignItems: "center", gap: 10,
                 padding: "10px 24px",
-                border: "1px solid #cfc4a0",
-                fontFamily: "var(--font-label, sans-serif)",
+                border: "1px solid var(--ink-muted)",
+                fontFamily: "var(--font-label)",
                 fontSize: 9, letterSpacing: "0.18em",
-                textTransform: "uppercase", color: "#6a88a8",
+                textTransform: "uppercase", color: "var(--ink-body)",
                 transition: "all 0.2s",
               }}
             >
@@ -205,25 +199,21 @@ const Hero: FC = () => {
         </div>
 
         {/* Scroll hint */}
-        <div style={{
-          display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
-        }}>
+        {/* <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-            style={{
-              width: 1, height: 28, background: "#a8966e",
-            }}
+            style={{ width: 1, height: 28, background: "var(--muted)" }}
           />
           <span style={{
-            fontFamily: "var(--font-label, sans-serif)",
+            fontFamily: "var(--font-label)",
             fontSize: 8, letterSpacing: "0.2em",
-            textTransform: "uppercase", color: "#3a5880",
+            textTransform: "uppercase", color: "var(--ink-subtle)",
             writingMode: "vertical-rl",
           }}>
             Scroll
           </span>
-        </div>
+        </div> */}
       </motion.div>
     </section>
   );

@@ -5,8 +5,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 
 const STACK = [
-  "PHP", "Laravel", "MySQL", "JavaScript", "React.js",
-  "Flutter", "Java", "Git", "Figma", "REST APIs", "Firebase", "SQL Server",
+  "PHP", "ThinkPHP5", "Laravel", "MySQL", "Redis", "Docker",
+  "JavaScript", "React.js", "Flutter", "REST APIs", "Firebase", "Git",
 ];
 
 const Hero: FC = () => {
@@ -47,7 +47,7 @@ const Hero: FC = () => {
             fontSize: 9, letterSpacing: "0.18em",
             textTransform: "uppercase", color: "var(--ink-subtle)",
           }}>
-            PHP · Laravel · React · Flutter Developer
+            PHP · ThinkPHP5 · Laravel · React Developer
           </span>
           <span style={{
             fontFamily: "var(--font-mono)",
@@ -115,9 +115,9 @@ const Hero: FC = () => {
             lineHeight: 1.75,
             maxWidth: 400,
           }}>
-            PHP & Laravel specialist with 4+ years building robust backends,
-            RESTful APIs, and polished interfaces — from database design to
-            Flutter mobile apps.
+            Full-stack developer building iOneCard's mobile platform — RESTful
+            APIs, POS systems, and admin tooling on PHP/ThinkPHP5, shipped
+            end-to-end for live iOS/Android users.
           </p>
 
           <div>

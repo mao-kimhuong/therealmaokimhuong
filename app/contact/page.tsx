@@ -19,7 +19,7 @@ const PROJECT_TYPES = [
 
 const CONTACT_INFO = [
   { label: "Email",    value: "maokimhuong.office@gmail.com", href: "mailto:maokimhuong.office@gmail.com" },
-  { label: "GitHub",   value: "github.com/therealmaokimhuong", href: "https://github.com/therealmaokimhuong" },
+  { label: "GitHub",   value: "github.com/maokimhuong",       href: "https://github.com/maokimhuong" },
   { label: "Telegram", value: "+855 96 37 38 968",             href: "https://t.me/maokimhuong" },
 ];
 
@@ -324,14 +324,14 @@ export default function ContactPage(): ReactNode {
                   fontSize: 32, color: "var(--parchment)",
                   letterSpacing: "0.04em", lineHeight: 1,
                 }}>
-                  CAMBODIA
+                  PHNOM PENH
                 </p>
                 <p style={{
                   fontFamily: "var(--font-mono)",
                   fontSize: 9, color: "var(--ink-body)",
                   marginTop: 4, letterSpacing: "0.08em",
                 }}>
-                  UTC+7 · Open to remote worldwide
+                  Cambodia · UTC+7 · Open to remote worldwide
                 </p>
               </div>
             </motion.div>

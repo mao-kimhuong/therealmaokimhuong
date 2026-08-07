@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Lora, DM_Mono, Archivo } from "next/font/google";
-import "../globals.css";
-import Cursor from "./Cursor";
-// import Cursor from "./components/Cursor";
+import "./globals.css";
+import Cursor from "./components/Cursor";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -13,7 +12,7 @@ const bebas = Bebas_Neue({
 
 const lora = Lora({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-lora",
   display: "swap",
@@ -29,19 +28,22 @@ const dmMono = DM_Mono({
 
 const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-archivo",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio — PHP, Laravel & React Developer",
-  description: "Full-cycle web developer. PHP, Laravel, React.js, Flutter, MySQL. 4+ years, 15+ skills.",
+  title: "Mao Kim Huong — Full-Stack Web Developer",
+  description:
+    "Full-stack developer in Phnom Penh, Cambodia. PHP, ThinkPHP5, Laravel & React — building RESTful APIs, POS systems, and mobile-first platforms.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"

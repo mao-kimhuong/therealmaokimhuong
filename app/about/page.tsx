@@ -11,17 +11,17 @@ import BackgroundCanvas from "../components/BackgroundCanvas";
 import ClientOnly from "../components/ClientOnly";
 
 const TIMELINE = [
-  { year: "2025 — Present", role: "Fullstack Web Developer", co: "iOne Cambodia",           note: "Building core product 0 → 1"         },
-  { year: "2024 — 2025",    role: "Fullstack Web Developer", co: "BluePrint Technology",    note: "10+ client projects shipped"          },
-  { year: "2023 — 2024",    role: "Web Developer Intern",    co: "Inklusivity Technology",  note: "React, TypeScript, design systems"    },
-  { year: "2022 — 2023",    role: "Junior Graphic Designer", co: "The Flora",               note: "Brand identity & marketing assets"    },
+  { year: "2025 — Present",        role: "Backend / Full-Stack Developer", co: "iOne (iOneCard Platform)",  note: "15+ modules shipped across 8 epics — mobile APIs, POS, ETL" },
+  { year: "2024 — 2025",           role: "Web Developer",                  co: "BluePrint Technology (Masterchat.io)", note: "Real-time chat platform — Laravel, JS, Firebase" },
+  { year: "Aug 2022 — Jan 2023",   role: "Web Developer Intern",           co: "Inklusivity Technology",    note: "POS, CRM & warehouse systems built from scratch" },
+  { year: "Oct 2022 — Apr 2023",   role: "Junior Graphic Designer",        co: "The Flora",                 note: "Brand identity & marketing assets" },
 ];
 
 const BELIEFS = [
-  ["Ship early, iterate fast",  "Working software beats perfect plans every time."],
-  ["Code is communication",     "Write for humans first. Machines are flexible."],
-  ["Full ownership",            "I care about the whole product — not just my slice."],
-  ["Performance is UX",         "Slow apps lose users. Every millisecond counts."],
+  ["Ship measurable outcomes",  "44 of 46 sprint tickets delivered on time — consistency compounds."],
+  ["Own the full stack",        "From ThinkPHP APIs to POS UI, I build the whole system, not just my slice."],
+  ["Automate the boring stuff", "ETL pipelines and alert bots mean fewer manual checks, faster decisions."],
+  ["Iterate with the team",     "Multi-round feedback loops turn rough drafts into shipped releases."],
 ];
 
 export default function AboutPage(): ReactNode {
@@ -65,9 +65,10 @@ export default function AboutPage(): ReactNode {
 
             <div>
               <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(16px,1.6vw,20px)", fontStyle: "italic", color: "var(--ink-text)", lineHeight: 1.75, marginBottom: 40 }}>
-                I'm a fullstack engineer based in Cambodia who cares equally about clean architecture and
-                great user experience. 4+ years building products end-to-end — from database schema to
-                pixel-perfect UI.
+                I'm a full-stack developer based in Phnom Penh, Cambodia, currently building iOneCard's
+                mobile platform — from RESTful APIs and POS systems to ETL pipelines and admin tooling.
+                I like owning things end-to-end, from database schema to the pixel-perfect screen a user
+                actually sees.
               </p>
 
               <div style={{ borderTop: "1px solid var(--ink-rule)", paddingTop: 28 }}>

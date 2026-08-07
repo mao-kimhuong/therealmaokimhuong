@@ -11,42 +11,42 @@ import ClientOnly from "../components/ClientOnly";
 const PROJECTS = [
   {
     id: "01",
-    title: "POS & Inventory System",
-    category: "Web Application",
-    year: "2023",
+    title: "iOneCard Platform",
+    category: "Fintech / Mobile Platform",
+    year: "2025",
     description:
-      "Multi-warehouse point-of-sale system with role-based access (admin, cashier, manager), real-time stock tracking, invoice generation, and full inventory control built for production business use.",
-    tech: ["Laravel", "MySQL", "jQuery", "PHP", "JavaScript"],
-    image: "/images/pos.jpg",
+      "Backend & full-stack work on iOne's mobile fintech platform — 15+ production modules across 8 epics, including Device Protection, Trade-In, Installment, Visa Card, Gift Card, POS, Corporation Registration, and Search. RESTful APIs with JWT auth, ETL pipelines for reporting, and a full admin portal with CRUD, exports, and role-based access — shipped to live iOS/Android users.",
+    tech: ["ThinkPHP5", "FastAdmin", "MySQL", "Redis", "Docker", "JWT"],
+    image: null,
   },
   {
     id: "02",
-    title: "Restaurant Menu System",
-    category: "Web Application",
-    year: "2024",
+    title: "POS & Inventory Management System",
+    category: "Multi-Shop Web Application",
+    year: "2023",
     description:
-      "Digital menu management platform for F&B businesses with dynamic item management, category controls, pricing updates, and QR-based customer-facing access.",
-    tech: ["Laravel", "Vue.js", "MySQL", "JavaScript"],
-    image: "/images/menu.png",
+      "Point of Sale, Inventory & Warehouse Management, CRM, and Vendor Management systems built from scratch, supporting multi-shop and multi-warehouse operations — built during a full-cycle internship at Inklusivity Technology.",
+    tech: ["PHP", "MySQL", "jQuery", "JavaScript"],
+    image: "/images/pos.jpg",
   },
   {
     id: "03",
-    title: "Analytics Dashboard",
-    category: "Data Visualization",
-    year: "2024",
-    description:
-      "Real-time business analytics dashboard with interactive charts, user management, role permissions, and CSV/PDF export — built to monitor key business metrics live.",
-    tech: ["React", "Laravel", "Chart.js", "MySQL"],
-    image: "/images/dashboard.png",
-  },
-  {
-    id: "04",
-    title: "Real-Time Chat System",
+    title: "Masterchat — Real-Time Chat Platform",
     category: "Communication Platform",
     year: "2024",
     description:
-      "Team messaging platform with WebSocket/Firebase real-time updates, message history, notifications, and a responsive mobile-first UI built on a REST API foundation.",
+      "Real-time messaging platform for BluePrint Technology serving active users, with responsive UI, live message delivery, and hardened API access — built collaboratively across design, QA, and backend.",
     tech: ["Laravel", "Firebase", "JavaScript", "MySQL"],
+    image: null,
+  },
+  {
+    id: "04",
+    title: "Gift Card Integration (Linkit360)",
+    category: "Third-Party API Integration",
+    year: "2025",
+    description:
+      "End-to-end integration of a third-party gift card provider into the iOneCard app — list, detail, checkout, order history, and order detail flows, plus Telegram bot alerts for real-time out-of-stock notifications.",
+    tech: ["ThinkPHP5", "REST API", "MySQL"],
     image: null,
   },
 ];

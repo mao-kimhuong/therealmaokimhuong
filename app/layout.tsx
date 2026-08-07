@@ -34,9 +34,9 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Mao Kimhuong — Full Stack Developer",
+  title: "Mao Kim Huong — Full-Stack Web Developer",
   description:
-    "PHP, Laravel & React developer. Building robust backends and polished interfaces. 4+ years, Cambodia.",
+    "Full-stack developer in Phnom Penh, Cambodia. PHP, ThinkPHP5, Laravel & React — building RESTful APIs, POS systems, and mobile-first platforms.",
 };
 
 export default function RootLayout({

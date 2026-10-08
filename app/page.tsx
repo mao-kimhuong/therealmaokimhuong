@@ -1,43 +1,31 @@
-"use client";
-
-import { useState } from "react";
-import Hero from "./components/Hero";
-import Nav from "./components/Nav";
-import BackgroundCanvas from "./components/BackgroundCanvas";
-import Background from "./components/Background";
-import PageLoader from "./components/PageLoader";
-import ClientOnly from "./components/ClientOnly";
+import Intro from "./components/site/Intro";
+import Header from "./components/site/Header";
+import Hero from "./components/site/Hero";
+import About from "./components/site/About";
+import ServicesIntro from "./components/site/ServicesIntro";
+import Services from "./components/site/Services";
+import Portfolio from "./components/site/Portfolio";
+import Stack from "./components/site/Stack";
+import Contact from "./components/site/Contact";
+import Footer from "./components/site/Footer";
+import SiteAnimations from "./components/site/SiteAnimations";
 
 export default function HomePage() {
-  const [loaded, setLoaded] = useState(false);
-
   return (
-    <main style={{ background: "var(--ink)", minHeight: "100vh", position: "relative" }}>
-      {/* Ambient gradient mesh */}
-      <ClientOnly>
-        <Background />
-      </ClientOnly>
-
-      {/* Particle canvas */}
-      <ClientOnly>
-        <BackgroundCanvas />
-      </ClientOnly>
-
-      {/* Page loader — runs once on first visit */}
-      <ClientOnly>
-        <PageLoader onDone={() => setLoaded(true)} />
-      </ClientOnly>
-
-      {/* Main content */}
-      <div style={{
-        position: "relative",
-        zIndex: 1,
-        opacity: loaded ? 1 : 0,
-        transition: "opacity 0.4s ease",
-      }}>
-        <Nav />
+    <>
+      <Intro />
+      <main className="main-wrapper">
+        <Header />
         <Hero />
-      </div>
-    </main>
+        <About />
+        <ServicesIntro />
+        <Services />
+        <Portfolio />
+        <Stack />
+        <Contact />
+        <Footer />
+      </main>
+      <SiteAnimations />
+    </>
   );
 }

@@ -1,35 +1,12 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Lora, DM_Mono, Archivo } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
+import "lenis/dist/lenis.css";
 import "./globals.css";
-import Cursor from "./components/Cursor";
+import SmoothScroll from "./components/site/SmoothScroll";
 
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-bebas",
-  display: "swap",
-});
-
-const lora = Lora({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-lora",
-  display: "swap",
-});
-
-const dmMono = DM_Mono({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
-  variable: "--font-dm-mono",
-  display: "swap",
-});
-
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-archivo",
+const interTight = Inter_Tight({
+  subsets: ["latin", "latin-ext", "vietnamese"],
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
@@ -45,12 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${bebas.variable} ${lora.variable} ${dmMono.variable} ${archivo.variable}`}
-    >
-      <body>
-        <Cursor />
+    <html lang="en" className={interTight.variable}>
+      <body data-theme-nav="dark">
+        <SmoothScroll />
         {children}
       </body>
     </html>

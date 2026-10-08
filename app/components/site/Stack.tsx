@@ -1,13 +1,14 @@
-import { SiPhp, SiLaravel, SiReact, SiMysql, SiRedis, SiDocker, SiFlutter } from "react-icons/si";
+import { SiPhp, SiLaravel, SiSpringboot, SiMysql, SiDocker, SiFlutter, SiFirebase, SiFigma } from "react-icons/si";
 
 const STACK = [
   { name: "PHP", Icon: SiPhp },
   { name: "Laravel", Icon: SiLaravel },
-  { name: "React", Icon: SiReact },
+  { name: "Spring Boot", Icon: SiSpringboot },
   { name: "MySQL", Icon: SiMysql },
-  { name: "Redis", Icon: SiRedis },
   { name: "Docker", Icon: SiDocker },
+  { name: "Firebase", Icon: SiFirebase },
   { name: "Flutter", Icon: SiFlutter },
+  { name: "Figma", Icon: SiFigma },
 ];
 
 export default function Stack() {
@@ -20,9 +21,9 @@ export default function Stack() {
       </div>
       <div className="certification-content-w">
         <p>
-          3+ years shipping production systems — now at iOne building the iOneCard fintech platform,
-          previously at BluePrint Technology and Inklusivity Technology. 44 of 46 sprint tickets delivered
-          on time, because consistency compounds.
+          Shipping production systems since 2022 — now at iOne on the iOneCard platform, previously at
+          BluePrint Technology and Inklusivity Technology. Bachelor’s in Management Information Systems,
+          now studying for a Master of Information Technology at SETEC Institute.
         </p>
       </div>
       <div className="certifications-logos">

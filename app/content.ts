@@ -18,13 +18,13 @@ export const SERVICES = [
   {
     title: "Web applications",
     description:
-      "Full-stack web apps on PHP, Laravel and ThinkPHP5 with React on the front — from database schema to the screen your users actually touch.",
+      "Full-stack web apps on PHP, Laravel and ThinkPHP5, with JavaScript, jQuery and Bootstrap on the front — from database schema to the screen your users actually touch.",
     image: "/images/IMG_3896.JPG",
   },
   {
     title: "APIs & integrations",
     description:
-      "RESTful APIs with JWT auth, rate limiting and clean docs. Third-party providers wired in end-to-end, with alerts when something goes wrong.",
+      "RESTful APIs with token-based auth, consumed by iOS and Android apps. Firebase and third-party web APIs wired in end-to-end, plus SMTP email notifications.",
     image: "/images/dashboard.png",
   },
   {
@@ -34,9 +34,9 @@ export const SERVICES = [
     image: "/images/pos.jpg",
   },
   {
-    title: "Mobile app backends",
+    title: "Admin portals & DevOps",
     description:
-      "The platform behind iOS and Android apps — production modules, ETL pipelines for reporting, and admin portals your team can run without a developer.",
+      "Admin portals your team can run without a developer — CRUD with xlsx/csv export, drag-sort, status toggles and date filters — on Dockerised PHP 8, MySQL 8, Redis and Nginx.",
     image: "/images/menu.png",
   },
 ];
@@ -54,30 +54,23 @@ export const PROJECTS: Project[] = [
   {
     title: "iOneCard Platform",
     description:
-      "15+ production modules across 8 epics for a live fintech app — device protection, trade-in, installment, Visa card, POS and search — shipped to iOS and Android users.",
-    tags: "ThinkPHP5 · FastAdmin · MySQL · Redis · Docker",
+      "10+ production modules for a live fintech platform — device protection insurance, trade-in, installment, Visa card, gift card, service center, and real-time search with history.",
+    tags: "PHP · ThinkPHP5 · FastAdmin · MySQL · Redis · Docker",
     image: "/images/menu.png",
   },
   {
-    title: "POS & Inventory System",
+    title: "Masterchat.io",
     description:
-      "Point of sale, inventory, warehouse, CRM and vendor management built from scratch, supporting multi-shop and multi-warehouse operations.",
-    tags: "PHP · MySQL · jQuery",
-    image: "/images/pos.jpg",
-  },
-  {
-    title: "Masterchat",
-    description:
-      "A real-time messaging platform for BluePrint Technology with live message delivery, a responsive UI and hardened API access.",
-    tags: "Laravel · Firebase · JavaScript",
+      "A real-time chat system for BluePrint Technology with a responsive UI, live messaging and Firebase integration.",
+    tags: "Laravel · JavaScript · Firebase",
     image: "/images/dashboard.png",
   },
   {
-    title: "Gift Card Integration",
+    title: "ERP System",
     description:
-      "End-to-end integration of a third-party gift card provider — list, checkout and order history — plus Telegram alerts for real-time stock outages.",
-    tags: "ThinkPHP5 · REST API · Telegram Bot",
-    image: "/images/IMG_3899.JPG",
+      "Multi-shop point of sale, inventory, warehouse, CRM and vendor management, built during my internship at Inklusivity Technology.",
+    tags: "PHP · MySQL · jQuery · Ajax",
+    image: "/images/pos.jpg",
   },
 ];
 

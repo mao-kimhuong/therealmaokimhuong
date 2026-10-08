@@ -13,7 +13,7 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   title: "Mao Kim Huong — Full-Stack Web Developer",
   description:
-    "Full-stack developer in Phnom Penh, Cambodia. PHP, ThinkPHP5, Laravel & React — building RESTful APIs, POS systems, and mobile-first platforms.",
+    "Full-stack developer in Phnom Penh, Cambodia. Backend PHP systems, REST APIs and mobile-facing web platforms on ThinkPHP5, Laravel and FastAdmin — production-grade features for fintech and e-commerce.",
 };
 
 export default function RootLayout({

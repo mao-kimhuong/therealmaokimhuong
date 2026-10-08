@@ -17,12 +17,12 @@ export default function About() {
         <BracketHeading>About me</BracketHeading>
         <p data-split-lines>
           I’m Mao Kim Huong, a full-stack developer in Phnom Penh, Cambodia. I build web platforms, APIs and
-          business systems on PHP, Laravel, ThinkPHP5 and React — and I like owning them end-to-end,
+          business systems on PHP, Laravel, ThinkPHP5 and FastAdmin — and I like owning them end-to-end,
           from schema design to the screen a user taps.
         </p>
         <p data-split-lines>
-          Right now I’m building iOneCard’s mobile fintech platform at iOne: 15+ production modules shipped
-          to live iOS and Android users, plus ETL pipelines and admin tooling. Every project gets the same
+          Right now I’m building the iOneCard platform at iOne: 10+ production modules, REST APIs for its iOS
+          and Android apps, and the admin portal behind them. Every project gets the same
           care, whether it’s a startup MVP or a system thousands of people rely on.
         </p>
         <ScribbleButton href={LINKS.quote} variant="dark-blue">

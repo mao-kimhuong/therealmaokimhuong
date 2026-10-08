@@ -24,7 +24,7 @@ export default function Hero() {
         <div className="partner-wrap" data-transition-reveal>
           <span className="hero-label">Full-stack developer</span>
           <div className="partner-dot" />
-          <span className="hero-label">Open to work</span>
+          <span className="hero-label">Open to Freelance</span>
         </div>
         <div className="locate-wrap" data-transition-reveal>
           <div className="hero-label txt-align-right">

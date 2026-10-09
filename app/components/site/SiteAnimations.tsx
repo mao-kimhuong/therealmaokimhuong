@@ -4,7 +4,7 @@ import { gsap, SplitText, ScrollTrigger, useGSAP, prefersReducedMotion } from ".
 
 /**
  * Attribute-driven scroll animations shared across sections:
- * data-split-lines, data-split-rolling, data-split-random,
+ * data-split-lines, data-split-rolling, data-split-random, data-stagger,
  * data-bracket-heading, data-parallax and data-footer.
  * Rendered last on the page so pinned sections above have already set up.
  */
@@ -61,10 +61,18 @@ export default function SiteAnimations() {
             return gsap.to(self.chars, {
               x: 0, y: 0, rotation: 0, scale: 1, filter: "blur(0px)",
               stagger: { each: 0.03, from: "random" },
-              scrollTrigger: { trigger: el, start: "top bottom", end: "top 15%", scrub: true },
+              scrollTrigger: { trigger: el, start: "top bottom", end: "top 40%", scrub: true },
             });
           },
         }));
+      });
+
+      // Children of [data-stagger] rise in one after another.
+      $("[data-stagger]").forEach((el) => {
+        gsap.from(el.querySelectorAll("[data-stagger-item]"), {
+          yPercent: 60, autoAlpha: 0, duration: 0.6, ease: "power3.out", stagger: 0.035,
+          scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" },
+        });
       });
 
       // [ Brackets ] slide in from the sides.

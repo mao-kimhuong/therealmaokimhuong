@@ -399,13 +399,44 @@ body[data-theme-nav="light"] .header { color: var(--light-silver); }
 .certification-header-w { width: 100%; max-width: 66em; }
 .certified-big-txt { font-size: 7.3em; font-weight: 700; line-height: 1.05; text-align: center; text-transform: uppercase; }
 .certification-content-w { width: 100%; max-width: 42em; text-align: center; }
-.certifications-logos {
-  display: flex; justify-content: space-between; align-items: center; gap: 2em;
-  width: 100%; max-width: 60em;
+.experience-list { width: 100%; max-width: 60em; list-style: none; }
+.experience-row {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 12em; align-items: baseline; gap: 1em;
+  padding: 1em 0;
+  border-top: 0.09375em solid var(--ink-black);
 }
-.certifications-logo { display: flex; flex-direction: column; align-items: center; gap: 0.6em; color: var(--dark-blue); }
-.certifications-logo svg { width: 3.5em; height: 3.5em; }
-.certifications-logo span { font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.04em; }
+.experience-row:last-child { border-bottom: 0.09375em solid var(--ink-black); }
+.experience-row__role { font-size: 1.25em; font-weight: 700; }
+.experience-row__company { font-size: 1.15em; color: var(--dark-blue); }
+.experience-row__dates { font-size: 1em; text-transform: uppercase; white-space: nowrap; text-align: right; }
+.stack-block { display: flex; flex-direction: column; gap: 1.5em; width: 100%; max-width: 60em; }
+.stack-block__label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 1.5em; font-weight: 700;
+}
+.stack-block__count { font-size: 0.6em; font-weight: 400; color: var(--dark-blue); }
+.skill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-flow: dense; gap: 2.5em 2em; }
+.skill-card.is--wide { grid-column: span 2; }
+.skill-card {
+  display: flex; flex-direction: column; gap: 1em;
+  padding-top: 1em;
+  border-top: 0.09375em solid var(--ink-black);
+}
+.skill-card__head { display: flex; align-items: baseline; gap: 0.6em; }
+.skill-card__num { font-size: 0.85em; color: var(--dark-blue); }
+.skill-card__title { font-size: 1.15em; font-weight: 700; text-transform: uppercase; }
+.skill-chips { display: flex; flex-wrap: wrap; gap: 0.4em; list-style: none; }
+.skill-chip {
+  padding: 0.4em 0.8em;
+  border: 1px solid var(--ink-black);
+  border-radius: 2em;
+  font-size: 0.9em; line-height: 1;
+  white-space: nowrap;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .skill-chip:hover { background: var(--dark-blue); border-color: var(--dark-blue); color: var(--light-silver); }
+}
 
 /* ── Contact ─────────────────────────────────────────────────────────── */
 .contact {
@@ -507,6 +538,7 @@ body[data-theme-nav="light"] .header { color: var(--light-silver); }
   .portfolio-orbit__btn { width: 3em; height: 3em; }
   .portfolio-orbit__overlay-nav { gap: 1.5em; }
   .certification { min-height: 39em; padding: 5.625em 1.5em; }
+  .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .certified-big-txt { font-size: 5em; }
   .contact-content { gap: 1.5em; }
   .footer { padding: 3.75em 1.5em; }
@@ -556,7 +588,9 @@ body[data-theme-nav="light"] .header { color: var(--light-silver); }
   .portfolio-orbit__card { width: clamp(13em, 62vw, 19em); }
   .certification { gap: 2.25em; min-height: 29.25em; padding: 4.21875em 1em; }
   .certified-big-txt { font-size: 3.35em; }
-  .certifications-logos { flex-wrap: wrap; justify-content: center; gap: 1.5em 2.5em; }
+  .experience-row { grid-template-columns: 1fr auto; gap: 0.25em 1em; }
+  .experience-row__company { grid-column: 1; grid-row: 2; }
+  .experience-row__dates { grid-column: 2; grid-row: 1; }
   .footer { padding: 2em 1em 4.5em; }
   .footer-top { gap: 4.21875em; padding: 1.5em; }
   .footer-bracket { width: 1.96875em; border-width: 0.5625em; }
@@ -594,6 +628,9 @@ body[data-theme-nav="light"] .header { color: var(--light-silver); }
   .service-row { padding-top: 0.75em; padding-bottom: 0.75em; }
   .portfolio-orbit__info { font-size: 1.3em; }
   .certified-big-txt { font-size: 2.5em; }
+  .skill-grid { grid-template-columns: 1fr; gap: 2em; }
+  .skill-card.is--wide { grid-column: auto; }
+  .stack-block__label { font-size: 1.25em; }
   .contact-heading { font-size: clamp(4em, 10vw, 10em); }
   .contact-words span { font-size: 1.75em; }
   .footer { padding-top: 1em; padding-bottom: 7em; }

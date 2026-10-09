@@ -74,6 +74,36 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+export const EXPERIENCE = [
+  { role: "Backend / Full-Stack Developer", company: "iOne", dates: "2025 – Present" },
+  { role: "Web Developer", company: "BluePrint Technology (Masterchat.io)", dates: "2024 – 2025" },
+  { role: "Web Developer Intern", company: "Inklusivity Technology", dates: "Aug 2022 – Jan 2023" },
+  { role: "Junior Graphic Designer", company: "The Flora", dates: "Oct 2022 – Apr 2023" },
+];
+
+// Skill cards, grouped by layer. `wide` cards span two columns on larger screens.
+export const SKILL_BLOCKS = [
+  {
+    title: "Full stack",
+    groups: [
+      { layer: "Frontend", wide: true, items: ["HTML", "CSS", "JavaScript", "React", "Next.js", "jQuery", "Ajax", "Bootstrap", "Flutter", "Figma", "UX/UI Design"] },
+      { layer: "Database & Storage", items: ["MySQL", "SQL Server", "Redis", "Firebase", "xlsx / csv Export"] },
+      { layer: "APIs & Backend Logic", wide: true, items: ["PHP", "Laravel", "ThinkPHP5", "FastAdmin", "Node.js", "Python", "FastAPI", "Java Spring Boot", ".NET", "REST", "GraphQL", "gRPC", "WebSockets", "Webhooks", "OpenAPI", "Async Jobs"] },
+      { layer: "Auth & Permissions", items: ["OAuth 2.0", "OpenID Connect", "JWT", "API Keys", "Scopes & Roles", "Role-Based Access"] },
+      { layer: "Hosting & Deployment", items: ["Docker", "Nginx", "Web Hosting"] },
+      { layer: "Cloud & Compute", items: ["Docker Containers", "Firebase"] },
+      { layer: "CI/CD & Version Control", items: ["Git / GitHub", "Feature Branching", "API Versioning", "Contract Testing"] },
+      { layer: "Security & RLS", items: ["TLS / HTTPS", "Input Validation", "Schema Validation", "Object-Level Authorization", "Row-Level Security"] },
+      { layer: "Rate Limiting", items: ["Rate Limiting", "Throttling & Quotas", "Idempotency Keys"] },
+      { layer: "Caching & CDN", items: ["HTTP Caching", "Redis Caching", "Conditional Requests"] },
+      { layer: "Load Balancing & Scaling", items: ["Nginx", "API Gateway", "Stateless Services"] },
+      { layer: "Error Tracking & Logs", items: ["API Observability", "Problem Details Errors", "Email Notifications"] },
+      { layer: "Availability & Recovery", items: ["Timeouts", "Retries & Backoff", "Backward Compatibility"] },
+    ],
+  },
+];
+
+
 export const CONTACT_WORDS = [
   "CONTACT", "ទំនាក់ទំនង", "CONTACTO", "CONTACTEZ", "KONTAKT",
   "CONTATTO", "LIÊN HỆ", "ติดต่อ", "連絡", "연락", "联系",

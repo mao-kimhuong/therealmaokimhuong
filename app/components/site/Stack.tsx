@@ -12,7 +12,7 @@ export default function Stack() {
       </div>
       <div className="certification-content-w">
         <p>
-          Shipping production systems since 2022. Bachelor’s in Management Information Systems,
+          Shipping production systems since 2023. Bachelor’s in Management Information Systems,
           now studying for a Master of Information Technology at SETEC Institute.
         </p>
       </div>

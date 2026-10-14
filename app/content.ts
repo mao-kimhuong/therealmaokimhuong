@@ -54,7 +54,7 @@ export const PROJECTS: Project[] = [
   {
     title: "iOneCard Platform",
     description:
-      "10+ production modules for a live fintech platform — device protection insurance, trade-in, installment, Visa card, gift card, service center, and real-time search with history.",
+      "15+ production modules for a live fintech platform — device protection insurance, trade-in, installment, Visa card, gift card, service center, and real-time search with history.",
     tags: "PHP · ThinkPHP5 · FastAdmin · MySQL · Redis · Docker",
     image: "/images/menu.png",
   },
@@ -75,9 +75,9 @@ export const PROJECTS: Project[] = [
 ];
 
 export const EXPERIENCE = [
-  { role: "Backend / Full-Stack Developer", company: "iOne", dates: "2025 – Present" },
-  { role: "Web Developer", company: "BluePrint Technology (Masterchat.io)", dates: "2024 – 2025" },
-  { role: "Web Developer Intern", company: "Inklusivity Technology", dates: "Aug 2022 – Jan 2023" },
+  { role: "Backend / Full-Stack Developer", company: "iOne Technology (iOneCard)", dates: "Jun 2025 – Present" },
+  { role: "Web Developer", company: "BluePrint Technology (Masterchat.io)", dates: "Jan 2024 – Dec 2024" },
+  { role: "Web Developer Intern", company: "Inklusivity Technology", dates: "Aug 2023 – Jan 2024" },
   { role: "Junior Graphic Designer", company: "The Flora", dates: "Oct 2022 – Apr 2023" },
 ];
 

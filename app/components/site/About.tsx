@@ -21,7 +21,7 @@ export default function About() {
           from schema design to the screen a user taps.
         </p>
         <p data-split-lines>
-          Right now I’m building the iOneCard platform at iOne: 10+ production modules, REST APIs for its iOS
+          Right now I’m building the iOneCard platform at iOne: 15+ production modules, REST APIs for its iOS
           and Android apps, and the admin portal behind them. Every project gets the same
           care, whether it’s a startup MVP or a system thousands of people rely on.
         </p>

@@ -19,7 +19,7 @@ export const SERVICES = [
     title: "Web applications",
     description:
       "Full-stack web apps on PHP, Laravel and ThinkPHP5, with JavaScript, jQuery and Bootstrap on the front — from database schema to the screen your users actually touch.",
-    image: "/images/IMG_3896.JPG",
+    image: "/images/web-apps.jpg",
   },
   {
     title: "APIs & integrations",

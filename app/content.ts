@@ -75,7 +75,7 @@ export const PROJECTS: Project[] = [
 ];
 
 export const EXPERIENCE = [
-  { role: "Backend / Full-Stack Developer", company: "iOne Technology (iOneCard)", dates: "Jun 2025 – Present" },
+  { role: "Backend / Full-Stack Developer", company: "iOne Co. Ltd", dates: "Jun 2025 – Present" },
   { role: "Web Developer", company: "BluePrint Technology (Masterchat.io)", dates: "Jan 2024 – Dec 2024" },
   { role: "Web Developer Intern", company: "Inklusivity Technology", dates: "Aug 2023 – Jan 2024" },
   { role: "Junior Graphic Designer", company: "The Flora", dates: "Oct 2022 – Apr 2023" },
